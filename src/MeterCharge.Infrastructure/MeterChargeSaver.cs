@@ -1,5 +1,4 @@
 ﻿using MeterCharge.ApplicationCore.Entities;
-using MeterCharge.ApplicationCore.Entities.Enum;
 using MeterCharge.ApplicationCore.Interfaces;
 using System;
 using System.Collections.Generic;

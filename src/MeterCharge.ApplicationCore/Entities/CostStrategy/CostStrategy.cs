@@ -1,4 +1,5 @@
-﻿using MeterCharge.ApplicationCore.Interfaces;
+﻿using Ardalis.GuardClauses;
+using MeterCharge.ApplicationCore.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace MeterCharge.ApplicationCore.Entities.CostStrategy
 
         public CostStrategy(IDateService dateService)
         {
+            Guard.Against.Null(dateService, nameof(dateService));
             _dateService = dateService;
         }
         public abstract int GetCharge(int cost, int consumption);

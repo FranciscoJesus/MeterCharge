@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MeterCharge.ApplicationCore.Entities.CostStrategy;
 using MeterCharge.ApplicationCore.Entities.Enum;
+using MeterCharge.ApplicationCore.Interfaces;
 
 namespace MeterCharge.ApplicationCore.Entities
 {
@@ -9,9 +10,10 @@ namespace MeterCharge.ApplicationCore.Entities
     {
         public WaterMeter(string id,
                          IEnumerable<int> readings,
-                         ICostStrategy costStrategy) : base(id, readings, costStrategy)
+                         IDateService dateService) : base(id, readings)
         {
             this.MeterType = MeterType.Water;
+            SetCostStrategy(new NormalCostStrategy(dateService));
         }
     }
 }

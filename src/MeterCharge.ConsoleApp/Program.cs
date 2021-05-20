@@ -21,12 +21,9 @@ namespace MeterCharge.ConsoleApp
             var dateService = serviceProvider.GetService<IDateService>();
             var meterChargeSaver = serviceProvider.GetService<IMeterChargeSaver>();
 
-            var nightHalfPriceCostStrategy = new NightHalfPriceCostStrategy(dateService);
-            var normalStrategy = new NormalCostStrategy(dateService);
-
-            var m1 = new ElectricityMeter(Guid.NewGuid().ToString(), new List<int> { 97, 50 }, nightHalfPriceCostStrategy);
-            var m2 = new HeatMeter(Guid.NewGuid().ToString(), new List<int> { 55, 87 }, normalStrategy);
-            var m3 = new WaterMeter(Guid.NewGuid().ToString(), new List<int> { 98, 86 }, normalStrategy);
+            var m1 = new ElectricityMeter(Guid.NewGuid().ToString(), new List<int> { 97, 50 }, dateService);
+            var m2 = new HeatMeter(Guid.NewGuid().ToString(), new List<int> { 55, 87 }, dateService);
+            var m3 = new WaterMeter(Guid.NewGuid().ToString(), new List<int> { 98, 86 }, dateService);
 
             var list1 = new List<Meter> { m1, m2, m3 };
             meterChargeSaver.CalculateChargeForMeterReadingsAndSave(list1);

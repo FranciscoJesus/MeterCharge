@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using MeterCharge.ApplicationCore.Entities.CostStrategy;
+﻿using MeterCharge.ApplicationCore.Entities.CostStrategy;
 using MeterCharge.ApplicationCore.Entities.Enum;
+using MeterCharge.ApplicationCore.Interfaces;
+using System.Collections.Generic;
 
 namespace MeterCharge.ApplicationCore.Entities
 {
@@ -9,9 +9,10 @@ namespace MeterCharge.ApplicationCore.Entities
     {
         public HeatMeter(string id,
                          IEnumerable<int> readings,
-                         ICostStrategy costStrategy) : base(id, readings, costStrategy)
+                         IDateService dateService) : base(id, readings)
         {
             this.MeterType = MeterType.Heating;
+            SetCostStrategy(new NormalCostStrategy(dateService));
         }
     }
 }
